@@ -11,13 +11,10 @@ namespace ChaosMan
     {
         public static int ReadSettingInt(string name, int defaultValue)
         {
-            int value = defaultValue;
-            RegistryKey key = Registry.CurrentUser.OpenSubKey("Software");
+            var value = defaultValue;
+            var key = Registry.CurrentUser.OpenSubKey("Software");
 
-            if (key != null)
-            {
-                key = key.OpenSubKey("ChaosMan");
-            }
+            key = key?.OpenSubKey("ChaosMan");
 
             if (key != null)
             {
@@ -31,17 +28,12 @@ namespace ChaosMan
 
         public static void WriteSettingInt(string name, int value)
         {
-            RegistryKey softwareKey = Registry.CurrentUser.OpenSubKey("Software", true);
+            var softwareKey = Registry.CurrentUser.OpenSubKey("Software", true);
             RegistryKey key = null;
 
             if (softwareKey != null)
             {
-                key = softwareKey.OpenSubKey("ChaosMan", true);
-
-                if (key == null)
-                {
-                    key = softwareKey.CreateSubKey("ChaosMan");
-                }
+                key = softwareKey.OpenSubKey("ChaosMan", true) ?? softwareKey.CreateSubKey("ChaosMan");
             }
 
             if (key != null)
@@ -51,10 +43,7 @@ namespace ChaosMan
                 key.Close();
             }
 
-            if (softwareKey != null)
-            {
-                softwareKey.Close();
-            }
+            softwareKey?.Close();
         }
     }
 
@@ -67,10 +56,10 @@ namespace ChaosMan
         public static extern Int32 GetClientRect(IntPtr hWnd, out Rectangle rect);
 
         [DllImport("User32.dll")]
-        public extern static Int32 SetWindowLong(IntPtr hWnd, int nIndex, Int32 dwNewLong);
+        public static extern Int32 SetWindowLong(IntPtr hWnd, int nIndex, Int32 dwNewLong);
 
         [DllImport("User32.dll")]
-        public extern static Int32 GetWindowLong(IntPtr hWnd, int nIndex);
+        public static extern Int32 GetWindowLong(IntPtr hWnd, int nIndex);
 
         public const int
             GWL_STYLE = (-16),

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ChaosMan
@@ -15,32 +10,32 @@ namespace ChaosMan
 
         public OptionsForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            armDepthTrackBar.Value = Helpers.ReadSettingInt("ArmDepth", 3);
-            maxChildrenTrackBar.Value = Helpers.ReadSettingInt("MaxChildren", 3);
-            armLengthTrackBar.Value = Helpers.ReadSettingInt("BaseDistance", 25);
-            manCountTrackBar.Value = Helpers.ReadSettingInt("Count", 1);
+            this.armDepthTrackBar.Value = Helpers.ReadSettingInt("ArmDepth", 3);
+            this.maxChildrenTrackBar.Value = Helpers.ReadSettingInt("MaxChildren", 3);
+            this.armLengthTrackBar.Value = Helpers.ReadSettingInt("BaseDistance", 25);
+            this.manCountTrackBar.Value = Helpers.ReadSettingInt("Count", 1);
 
-            armDepthTextBox.DataBindings.Add("Text", armDepthTrackBar, "Value");
-            maxChildrenTextBox.DataBindings.Add("Text", maxChildrenTrackBar, "Value");
-            armLengthTextBox.DataBindings.Add("Text", armLengthTrackBar, "Value");
-            manCountTextBox.DataBindings.Add("Text", manCountTrackBar, "Value");
+            this.armDepthTextBox.DataBindings.Add("Text", this.armDepthTrackBar, "Value");
+            this.maxChildrenTextBox.DataBindings.Add("Text", this.maxChildrenTrackBar, "Value");
+            this.armLengthTextBox.DataBindings.Add("Text", this.armLengthTrackBar, "Value");
+            this.manCountTextBox.DataBindings.Add("Text", this.manCountTrackBar, "Value");
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            Helpers.WriteSettingInt("ArmDepth", armDepthTrackBar.Value);
-            Helpers.WriteSettingInt("MaxChildren", maxChildrenTrackBar.Value);
-            Helpers.WriteSettingInt("BaseDistance", armLengthTrackBar.Value);
-            Helpers.WriteSettingInt("Count", manCountTrackBar.Value);
+            Helpers.WriteSettingInt("ArmDepth", this.armDepthTrackBar.Value);
+            Helpers.WriteSettingInt("MaxChildren", this.maxChildrenTrackBar.Value);
+            Helpers.WriteSettingInt("BaseDistance", this.armLengthTrackBar.Value);
+            Helpers.WriteSettingInt("Count", this.manCountTrackBar.Value);
 
-            Close();
+            this.Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
     }
 }
